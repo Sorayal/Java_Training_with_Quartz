@@ -1,1 +1,1 @@
-"# Training area for framework Quartz" 
+# Training area for framework Quartz
