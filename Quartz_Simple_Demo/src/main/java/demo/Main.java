@@ -1,4 +1,4 @@
-package quartztest;
+package demo;
 
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
