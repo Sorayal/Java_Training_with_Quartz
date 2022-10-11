@@ -3,6 +3,7 @@ package using_quartz;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
+import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
 
 // Imports Zum Instanziieren der notwendigen Quartz Objekte.
@@ -30,7 +31,16 @@ public class Main {
                     .withIdentity("myJob", "group_test")
                     .build();
 
-            scheduler.shutdown();
+            // Creating Trigger
+            Trigger trigger = newTrigger()
+                    .withIdentity("myTrigger","group_test")
+                            .startNow()
+                                    .withSchedule(simpleSchedule()
+                                            .withIntervalInSeconds(30)
+                                            .repeatForever())
+                    .build();
+            scheduler.scheduleJob(job, trigger);
+            //scheduler.shutdown();
         }catch(SchedulerException se){
             se.printStackTrace();
         }
